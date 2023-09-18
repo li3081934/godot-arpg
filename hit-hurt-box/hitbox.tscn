@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cfa616qmvwnfp"]
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

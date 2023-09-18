@@ -34,6 +34,7 @@ func _physics_process(delta):
 	#else:
 		#velocity.x = move_toward(velocity.x, 0, SPEED)
 	#move_and_slide()
+	
 	match state:
 		MOVE:
 			move_state(delta)
@@ -51,15 +52,24 @@ func move_state(delta):
 	if input_vector != Vector2.ZERO :
 		$AnimationTree.set('parameters/Idle/blend_position', input_vector)
 		$AnimationTree.set('parameters/Walk/blend_position', input_vector)
+		$AnimationTree.set('parameters/Attack/blend_position', input_vector)
 		anmiationState.travel('Walk')
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
 		anmiationState.travel('Idle')
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	if Input.is_action_just_pressed("attack") :
+		state = ATTACK
 	move_and_slide()
 	
 func attack_state(delta):
-	pass
+	velocity = Vector2.ZERO
+	anmiationState.travel('Attack')
+
+func attack_done():
+	state = MOVE
 	
 func roll_state(delta):
 	pass
+
+
