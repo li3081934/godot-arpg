@@ -44,3 +44,7 @@ texture={
 "roughness/mode": 0,
 "roughness/src_normal": ""
 }
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
