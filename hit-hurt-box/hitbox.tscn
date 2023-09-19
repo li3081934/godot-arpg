@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://cfa616qmvwnfp"]
+[gd_scene load_steps=2 format=3 uid="uid://cfa616qmvwnfp"]
+
+[ext_resource type="Script" path="res://hit-hurt-box/hitbox.gd" id="1_vgkg4"]
 
 [node name="Area2D" type="Area2D"]
-collision_mask = 9
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_vgkg4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

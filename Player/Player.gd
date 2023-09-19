@@ -3,7 +3,7 @@ extends CharacterBody2D
 const MAX_SPEED = 80
 const ACCELERATION = 500  # 加速度
 const FRICTION = 500 # 摩擦力
-
+const ROLL_SPEED = 120
 #const SPEED = 300.0
 #const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -16,7 +16,7 @@ enum {
 }
 
 var state = MOVE
-
+var roll_vector = Vector2.LEFT
 func _physics_process(delta):
 	# Add the gravity.
 	#if not is_on_floor():
@@ -53,6 +53,8 @@ func move_state(delta):
 		$AnimationTree.set('parameters/Idle/blend_position', input_vector)
 		$AnimationTree.set('parameters/Walk/blend_position', input_vector)
 		$AnimationTree.set('parameters/Attack/blend_position', input_vector)
+		$AnimationTree.set('parameters/Roll/blend_position', input_vector)
+		roll_vector = input_vector
 		anmiationState.travel('Walk')
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
@@ -60,16 +62,26 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	if Input.is_action_just_pressed("attack") :
 		state = ATTACK
-	move_and_slide()
+	if Input.is_action_just_pressed("roll") :
+		state = ROLL
+	move()
 	
 func attack_state(delta):
 	velocity = Vector2.ZERO
 	anmiationState.travel('Attack')
 
+func roll_state(delta):
+	velocity = roll_vector * ROLL_SPEED
+	anmiationState.travel('Roll')
+	move()
+	
 func attack_done():
 	state = MOVE
 	
-func roll_state(delta):
-	pass
-
+func roll_done():
+	velocity = velocity * 0.6
+	state = MOVE
+	
+func move(): 
+	move_and_slide()
 
