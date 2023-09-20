@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://piwvjhqfhl04"]
+[gd_scene load_steps=16 format=3 uid="uid://piwvjhqfhl04"]
 
 [ext_resource type="Script" path="res://Enemies/bat.gd" id="1_d5ioa"]
 [ext_resource type="Texture2D" uid="uid://t1qf72gd13u7" path="res://Enemies/Bat.png" id="1_gh5t2"]
 [ext_resource type="Texture2D" uid="uid://dmqhgiex80g7t" path="res://Shadows/SmallShadow.png" id="2_irpkk"]
 [ext_resource type="PackedScene" uid="uid://b32osj4x4wnjr" path="res://hit-hurt-box/hurtbox.tscn" id="4_boc51"]
+[ext_resource type="PackedScene" uid="uid://rg015gpn5tmi" path="res://Stats.tscn" id="5_il5tl"]
+[ext_resource type="PackedScene" uid="uid://cwxembq2fmdn5" path="res://Enemies/PlayerCheckArea.tscn" id="6_2jtck"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0np2w"]
 atlas = ExtResource("1_gh5t2")
@@ -56,8 +58,11 @@ height = 8.0
 radius = 7.0
 height = 20.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bsitk"]
+radius = 54.0093
+
 [node name="bat" type="CharacterBody2D"]
-collision_mask = 0
+collision_layer = 0
 script = ExtResource("1_d5ioa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -76,13 +81,25 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_upbm3")
 
 [node name="Area2D" parent="." instance=ExtResource("4_boc51")]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_r2wen")
 
+[node name="Stats" parent="." instance=ExtResource("5_il5tl")]
+MAX_HEALTH = 2
+
+[node name="PlayerCheckArea" parent="." instance=ExtResource("6_2jtck")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="PlayerCheckArea" index="0"]
+shape = SubResource("CircleShape2D_bsitk")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="health_empty" from="Stats" to="." method="_on_stats_health_empty"]
 
 [editable path="Area2D"]
+[editable path="PlayerCheckArea"]

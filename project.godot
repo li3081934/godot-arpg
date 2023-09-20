@@ -96,7 +96,9 @@ roll={
 2d_physics/layer_2="player"
 2d_physics/layer_3="playerHurt"
 2d_physics/layer_4="enemyHurt"
+2d_physics/layer_5="weapon"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"

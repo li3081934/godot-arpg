@@ -854,16 +854,16 @@ layer_0/tile_data = PackedInt32Array(65536, 0, 2, 0, 0, 0, 1, 655360, 2, 2, 1310
 y_sort_enabled = true
 
 [node name="Player" parent="Node2D" instance=ExtResource("1_15jdc")]
-position = Vector2(168, 114)
-
-[node name="CharacterBody2D" parent="Node2D" instance=ExtResource("5_stf7x")]
-position = Vector2(248, 120)
-
-[node name="CharacterBody2D2" parent="Node2D" instance=ExtResource("5_stf7x")]
-position = Vector2(219, 73)
+position = Vector2(228, 110)
 
 [node name="CharacterBody2D3" parent="Node2D" instance=ExtResource("5_stf7x")]
 position = Vector2(152, 58)
+
+[node name="CharacterBody2D4" parent="Node2D" instance=ExtResource("5_stf7x")]
+position = Vector2(312, 104)
+
+[node name="CharacterBody2D5" parent="Node2D" instance=ExtResource("5_stf7x")]
+position = Vector2(112, 32)
 
 [node name="Grass" type="Node2D" parent="Node2D"]
 

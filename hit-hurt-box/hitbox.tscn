@@ -8,3 +8,5 @@ collision_mask = 8
 script = ExtResource("1_vgkg4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

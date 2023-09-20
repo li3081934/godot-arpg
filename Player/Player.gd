@@ -9,6 +9,7 @@ const ROLL_SPEED = 120
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anmiationState = $AnimationTree.get('parameters/playback')
+@onready var hitbox = $hitbox_dir/hitbox
 enum {
 	MOVE,
 	ATTACK,
@@ -16,7 +17,7 @@ enum {
 }
 
 var state = MOVE
-var roll_vector = Vector2.LEFT
+var roll_vector = Vector2.DOWN
 func _physics_process(delta):
 	# Add the gravity.
 	#if not is_on_floor():
@@ -68,6 +69,7 @@ func move_state(delta):
 	
 func attack_state(delta):
 	velocity = Vector2.ZERO
+	hitbox.hit_vector = roll_vector
 	anmiationState.travel('Attack')
 
 func roll_state(delta):

@@ -1,59 +1,57 @@
 [gd_scene load_steps=9 format=3 uid="uid://v2kedy1nsusd"]
 
 [ext_resource type="Texture2D" uid="uid://b8mc81norikyc" path="res://Effects/GrassEffect.png" id="1_7pwiw"]
-[ext_resource type="Script" path="res://Effects/GrassEffect.gd" id="1_l2v36"]
+[ext_resource type="Script" path="res://Effects/effect.gd" id="3_t20r2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kfi5o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qelk3"]
 atlas = ExtResource("1_7pwiw")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fxwes"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rl0y"]
 atlas = ExtResource("1_7pwiw")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ctv1g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsmnb"]
 atlas = ExtResource("1_7pwiw")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6csoa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a3hy"]
 atlas = ExtResource("1_7pwiw")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_017og"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7eyd2"]
 atlas = ExtResource("1_7pwiw")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8qigu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_btujk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kfi5o")
+"texture": SubResource("AtlasTexture_qelk3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fxwes")
+"texture": SubResource("AtlasTexture_5rl0y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ctv1g")
+"texture": SubResource("AtlasTexture_dsmnb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6csoa")
+"texture": SubResource("AtlasTexture_0a3hy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_017og")
+"texture": SubResource("AtlasTexture_7eyd2")
 }],
 "loop": false,
-"name": &"effect",
-"speed": 12.0
+"name": &"default",
+"speed": 15.0
 }]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_l2v36")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_8qigu")
-animation = &"effect"
+position = Vector2(-3, -3.5)
+scale = Vector2(1.042, 1)
+sprite_frames = SubResource("SpriteFrames_btujk")
+autoplay = "default"
 frame = 4
 frame_progress = 1.0
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+script = ExtResource("3_t20r2")
