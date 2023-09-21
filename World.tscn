@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://83td7awllmvn"]
+[gd_scene load_steps=13 format=3 uid="uid://83td7awllmvn"]
 
 [ext_resource type="PackedScene" uid="uid://cljdb2qoisd0k" path="res://Player/Player.tscn" id="1_15jdc"]
 [ext_resource type="Texture2D" uid="uid://yde8x0tu3fur" path="res://World/GrassBackground.png" id="1_mele6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dfiyyc68y48ja" path="res://World/CliffTileset.png" id="3_8sqk8"]
 [ext_resource type="PackedScene" uid="uid://bsjp22c2t7yfh" path="res://World/Grass.tscn" id="5_3d4j4"]
 [ext_resource type="PackedScene" uid="uid://piwvjhqfhl04" path="res://Enemies/bat.tscn" id="5_stf7x"]
+[ext_resource type="PackedScene" uid="uid://gna1w6scfygm" path="res://friend/Cat.tscn" id="8_glxpj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0kx1p"]
 texture = ExtResource("2_tjnd7")
@@ -855,6 +856,9 @@ y_sort_enabled = true
 
 [node name="Player" parent="Node2D" instance=ExtResource("1_15jdc")]
 position = Vector2(228, 110)
+
+[node name="Cat" parent="Node2D" instance=ExtResource("8_glxpj")]
+position = Vector2(201, 93)
 
 [node name="CharacterBody2D3" parent="Node2D" instance=ExtResource("5_stf7x")]
 position = Vector2(152, 58)

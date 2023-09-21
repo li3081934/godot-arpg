@@ -2,7 +2,7 @@ extends CharacterBody2D
 @onready var stats = $Stats
 @onready var playerCheck = $PlayerCheckArea
 var BatEffect = preload("res://Effects/Bat_effect.tscn")
-
+@onready var animate = $AnimatedSprite2D
 const HIT_BACK_SPEED = 120
 const MOVE_SPEED = 50
 const FRICTION = 250 # 摩擦力
@@ -28,6 +28,7 @@ func _physics_process(delta):
 	
 func status_chase(delta):
 	var dir = (targetPlayer.global_position - global_position).normalized()
+	animate.flip_h = dir.x < 0
 	velocity = velocity.move_toward(dir * MOVE_SPEED, ACCELERATION * delta )
 	
 func seek_player():
