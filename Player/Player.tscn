@@ -1,8 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://cljdb2qoisd0k"]
+[gd_scene load_steps=48 format=3 uid="uid://cljdb2qoisd0k"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_bxfxb"]
 [ext_resource type="Texture2D" uid="uid://dpn6inb881778" path="res://Player/Player.png" id="2_ghjdv"]
 [ext_resource type="PackedScene" uid="uid://cfa616qmvwnfp" path="res://hit-hurt-box/hitbox.tscn" id="3_dicvb"]
+[ext_resource type="PackedScene" uid="uid://b32osj4x4wnjr" path="res://hit-hurt-box/hurtbox.tscn" id="4_l0jv2"]
+[ext_resource type="PackedScene" uid="uid://rg015gpn5tmi" path="res://Stats.tscn" id="5_73wiu"]
 
 [sub_resource type="Animation" id="Animation_r45lr"]
 resource_name = "AttackDown"
@@ -641,6 +643,10 @@ states/Walk/position = Vector2(445, 67)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8b55"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_peqen"]
+radius = 5.0
+height = 20.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_bxfxb")
@@ -684,4 +690,21 @@ position = Vector2(15, 0)
 shape = SubResource("CapsuleShape2D_w8b55")
 disabled = true
 
+[node name="hurt" parent="." instance=ExtResource("4_l0jv2")]
+position = Vector2(0, -9)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="hurt" index="0"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_peqen")
+debug_color = Color(0.941176, 0.14902, 0.478431, 0.419608)
+
+[node name="Stats" parent="." instance=ExtResource("5_73wiu")]
+MAX_HEALTH = 6
+
+[connection signal="area_entered" from="hurt" to="." method="_on_hurt_area_entered"]
+[connection signal="health_empty" from="Stats" to="." method="_on_stats_health_empty"]
+
 [editable path="hitbox_dir/hitbox"]
+[editable path="hurt"]

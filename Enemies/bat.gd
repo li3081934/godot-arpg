@@ -1,8 +1,9 @@
 extends CharacterBody2D
 @onready var stats = $Stats
 @onready var playerCheck = $PlayerCheckArea
-var BatEffect = preload("res://Effects/Bat_effect.tscn")
 @onready var animate = $AnimatedSprite2D
+
+var BatEffect = preload("res://Effects/Bat_effect.tscn")
 const HIT_BACK_SPEED = 120
 const MOVE_SPEED = 50
 const FRICTION = 250 # 摩擦力
@@ -41,6 +42,7 @@ func seek_player():
 func _on_area_2d_area_entered(area):
 	stats.health -= area.damage
 	velocity = area.hit_vector * HIT_BACK_SPEED
+	
 
 
 func _on_stats_health_empty():

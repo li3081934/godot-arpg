@@ -9,7 +9,7 @@ enum {
 }
 var player: CharacterBody2D = null
 var state = IDLE
-var targetPlayerPosition = Vector2.ZERO
+
 @onready var animate = $AnimatedSprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,18 +28,16 @@ func _physics_process(delta):
 			
 func state_chase(delta):
 	animate.play("Walk")
-	var dir = (targetPlayerPosition - global_position).normalized()
+	var dir = (player.global_position - global_position).normalized()
 	animate.flip_h = dir.x < 0
 	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
-	var distance = targetPlayerPosition.distance_to(global_position)
-	print(distance)
+	var distance = player.global_position.distance_to(global_position)
 	if distance <= MIN_DISTANCE:
 		state = IDLE
 
 func seek_player():
 	var distance = player.global_position.distance_to(global_position)
 	if distance > MIN_DISTANCE:
-		targetPlayerPosition = player.global_position
 		state = CHASE
 	else:
 		state = IDLE
